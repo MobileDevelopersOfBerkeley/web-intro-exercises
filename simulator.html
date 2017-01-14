@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <title>Trebuchet Simulator</title>
   <!-- TODO: Include styles.css -->
-  <link rel="stylesheet" href="/styles.css">
+
   <!-- TODO: Include simulator.js -->
-  <script src="simulator.js" type="text/javascript" charset="utf-8"></script>
+
   <script type="text/javascript">
   // This script contains code based on W3Schools' HTML Game Example
   var wall;
@@ -15,8 +15,8 @@
 
   /* TODO: create the trebuchet image using trebuchet.png
    * HINT: Use the JS Image class (2 lines) */
-  var trebuchet_img = new Image();
-  trebuchet_img.src = "/trebuchet.png";
+  var trebuchet_img =
+
 
   var components = [];
   var aimArrow = {
@@ -49,12 +49,12 @@
      * It should occupy the area from the right of hpBarGreen
      * to the right edge of the canvas
      * HINT: What should it's initial width be? (1 line) */
-    hpBarRed = new component(0, 10, "red", gameArea.canvas.width, 0, "hpbar");
+    hpBarRed =
 
     /* TODO: initialize components.
      * HINT: What should the list initially contain?
      * Which objects are components? (1 line) */
-    components = [wall, hpBarGreen, hpBarRed];
+    components =
 
     updateGameArea();
   }
@@ -65,17 +65,17 @@
     /* TODO: draw the trebuchet in the bottom left corner of the canvas
      * HINT: Use the JS Canvas drawImage function.
      * trebuchet.png is 100px x 100px (1 line) */
-    gameArea.context.drawImage(trebuchet_img, 0, gameArea.canvas.height - 100);
+
 
     draw_arrow(gameArea.context, 10, gameArea.canvas.height - 25, aimArrow.power, aimArrow.angle);
 
     // TODO: fill in the parentheses of the loop
-    for (var i = 0; i < components.length; i++) {
+    for () {
       var obj = components[i];
       if (obj.type == "projectile") {
 
         // TODO: update obj's position (1 line)
-        obj.newPos();
+
 
         if (obj.collidesWith(wall)) {
           console.log("Collided with wall!");
@@ -94,12 +94,8 @@
           continue;
         }
       } else if (obj.type == "wall") {
-        // TODO: remove wall from components if wall.hp <= 0
-        if (obj.hp <= 0) {
-          components.splice(i, 1);
-          i--;
-          continue;
-        }
+        // TODO: remove wall from components if wall.hp <= 0 (Around 5 lines)
+
       }
 
       obj.update(gameArea.context);
@@ -125,11 +121,9 @@
       /* TODO: create a new projectile and launch it from the same coordinates
        * as the arrow base's coordinates. Reset aimArrow to initial conditions.
        * HINT: you might want to examine the arguments to draw_arrow.
-       * Is a projectile a component? (<10 lines. I did it in 4) */
-      var p = new projectile();
-      launch(p, 10, gameArea.canvas.height - 25, aimArrow.power, aimArrow.angle);
-      components.push(p);
-      aimArrow.power = 30;
+       * Is a projectile a component? Use simulator.js for helper functions.
+       * (<10 lines. I did it in 4) */
+
     }
   });
   </script>
@@ -138,9 +132,7 @@
   <nav class="navbar">
     <!-- TODO: Fix broken link to home and add link to About and Simulator -->
     <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/simulator.html">Simulator</a></li>
+      <li><a href="/idx.html">Home</a></li>
     </ul>
   </nav>
   <h1>Use a Trebuchet to tear down a Wall!</h1>

@@ -27,14 +27,11 @@ function projectile() {
      * HINT: Looking at draw_arrow and component.update will help,
      * but you will have to do some googling (how to draw and fill in a circle?)
      * (around 5 lines) */
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.stroke();
+
   }
   this.collidesWith = function (obj) {
     /* TODO: Implement (simplified) collision detection. Assume obj is the wall.
+     * Returns true if collision returned, false otherwise.
      * HINT: the projectile can only hit the wall moving from left to right.
      * Therefore, the projectile only collides with the wall if:
      * 1) the rightmost point of the projectile hits the left edge of the wall
@@ -46,21 +43,8 @@ function projectile() {
      * the projectile (a circle)
      * DON'T HARDCODE, USE PROPERTIES OF PROJECTILE AND WALL OBJECTS (< 20 lines) */
     // Using simplified conditions because only collide with wall from left to right
-    var rightmost = this.x + this.radius;
-    var bottommost = this.y + this.radius;
-    if (rightmost >= obj.x && rightmost <= obj.x + obj.width &&
-          this.y >= obj.y) {
-      // Rightmost point of projectile collides with left edge of wall
-      return true;
-    } else if (bottommost.y >= obj.y && this.x >= obj.x && this.x <= obj.x + obj.width) {
-      // Bottommost of projectile collides with top edge of wall
-      return true;
-    }
-    if (Math.pow(obj.x - this.x, 2) + Math.pow(obj.y - this.y, 2) <= Math.pow(this.radius, 2)) {
-      // Projectile collides with top left corner of wall
-      return true;
-    }
-    return false;
+
+
   }
   this.hitBottom = function (y) {
     var bottommost = this.y + this.radius;

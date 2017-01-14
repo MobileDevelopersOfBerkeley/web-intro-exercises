@@ -13,5 +13,8 @@ I recommend completing the exercise in the following order:
 3) styles.css
   - CSS exercises
 
-4) simulator.html and simulator.js
-  - JavaScript exercises
+4) simulator.html
+  - basic JavaScript exercises
+
+5) simulator.js
+  - more advanced JavaScript exercises
