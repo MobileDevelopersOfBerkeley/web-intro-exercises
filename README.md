@@ -1,6 +1,8 @@
 # MDB Web Intro Exercises
 
-Designed to build familiarity with HTML/CSS/JavaScript
+Designed to build familiarity with HTML/CSS/JavaScript. Exercises are designed
+to be mildly annoying, but should be able to be completed within 2 or 3 hours.
+Expect to read through some documentation. If you get stuck, ask for help.
 
 I recommend completing the exercise in the following order:
 
