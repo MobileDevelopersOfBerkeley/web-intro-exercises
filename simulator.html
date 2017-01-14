@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Trebuchet Simulator</title>
+  <!-- TODO: Include styles.css -->
+  <link rel="stylesheet" href="/styles.css">
+  <!-- TODO: Include simulator.js -->
+  <script src="simulator.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+  // This script contains code based on W3Schools' HTML Game Example
+  var wall;
+  var hpBarGreen;
+  var hpBarRed;
+
+  /* TODO: create the trebuchet image using trebuchet.png
+   * HINT: Use the JS Image class (2 lines) */
+  var trebuchet_img = new Image();
+  trebuchet_img.src = "/trebuchet.png";
+
+  var components = [];
+  var aimArrow = {
+    angle: -Math.PI / 4, // in radians, negative because y increases downwards
+    power: 30
+  }
+
+  var gameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+      this.canvas.width = 720;
+      this.canvas.height = 360;
+      this.context = this.canvas.getContext("2d");
+      document.body.appendChild(this.canvas);
+      //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+      this.frameNo = 0;
+      this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+  }
+
+  function startGame() {
+    gameArea.start();
+    wall = new wall(10, 50, 600, gameArea.canvas.height - 50);
+    hpBarGreen = new component(wall.hp, 10, "green", gameArea.canvas.width - wall.hp, 0, "hpbar");
+
+    /* TODO: initialize hpBarRed.
+     * It should occupy the area from the right of hpBarGreen
+     * to the right edge of the canvas
+     * HINT: What should it's initial width be? (1 line) */
+    hpBarRed = new component(0, 10, "red", gameArea.canvas.width, 0, "hpbar");
+
+    /* TODO: initialize components.
+     * HINT: What should the list initially contain?
+     * Which objects are components? (1 line) */
+    components = [wall, hpBarGreen, hpBarRed];
+
+    updateGameArea();
+  }
+
+  function updateGameArea() {
+    gameArea.clear();
+
+    /* TODO: draw the trebuchet in the bottom left corner of the canvas
+     * HINT: Use the JS Canvas drawImage function.
+     * trebuchet.png is 100px x 100px (1 line) */
+    gameArea.context.drawImage(trebuchet_img, 0, gameArea.canvas.height - 100);
+
+    draw_arrow(gameArea.context, 10, gameArea.canvas.height - 25, aimArrow.power, aimArrow.angle);
+
+    // TODO: fill in the parentheses of the loop
+    for (var i = 0; i < components.length; i++) {
+      var obj = components[i];
+      if (obj.type == "projectile") {
+
+        // TODO: update obj's position (1 line)
+        obj.newPos();
+
+        if (obj.collidesWith(wall)) {
+          console.log("Collided with wall!");
+          wall.hp -= 10;
+          hpBarGreen.width -= 10;
+          hpBarRed.width += 10;
+          hpBarRed.x -= 10;
+          // Remove projectile
+          components.splice(i, 1);
+          i--;
+          continue;
+        } else if (obj.hitBottom(gameArea.canvas.height)) {
+          // Remove projectile
+          components.splice(i, 1);
+          i--;
+          continue;
+        }
+      } else if (obj.type == "wall") {
+        // TODO: remove wall from components if wall.hp <= 0
+        if (obj.hp <= 0) {
+          components.splice(i, 1);
+          i--;
+          continue;
+        }
+      }
+
+      obj.update(gameArea.context);
+    }
+  }
+
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 37 ||  event.keyCode == 38) {
+      // Left arrow pressed
+      aimArrow.angle -= Math.PI/180;
+    } else if (event.keyCode == 39 || event.keyCode == 40) {
+      // Right arrow pressed
+      aimArrow.angle += Math.PI/180;
+    } else if (event.keyCode == 32) {
+      // Space bar pressed
+      aimArrow.power++;
+    }
+  });
+  document.addEventListener("keyup", function(event) {
+    if (event.keyCode == 32) {
+      // Space bar released
+
+      /* TODO: create a new projectile and launch it from the same coordinates
+       * as the arrow base's coordinates. Reset aimArrow to initial conditions.
+       * HINT: you might want to examine the arguments to draw_arrow.
+       * Is a projectile a component? (<10 lines. I did it in 4) */
+      var p = new projectile();
+      launch(p, 10, gameArea.canvas.height - 25, aimArrow.power, aimArrow.angle);
+      components.push(p);
+      aimArrow.power = 30;
+    }
+  });
+  </script>
+</head>
+<body onload="startGame()">
+  <nav class="navbar">
+    <!-- TODO: Fix broken link to home and add link to About and Simulator -->
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/simulator.html">Simulator</a></li>
+    </ul>
+  </nav>
+  <h1>Use a Trebuchet to tear down a Wall!</h1>
+</body>
+</html>
