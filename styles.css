@@ -4,6 +4,7 @@ body, html {
   /* The following are required for a nice navbar */
   margin: 0px;
   padding: 0px;
+  background-color: #fde5f1;
 }
 
 /* Undoes ugly side-effects of having a nice navbar */
@@ -21,7 +22,42 @@ h1, h2, ul, img, a, p, button {
  * HINT: Styling only the unordered list and the link within the
  * list item under the navbar should be sufficient. */
 
+/*.navbar {
+  background-color: #d6a7a7;
+  display: inline-block;
+  height: 40px;
+  width: 100%;
+}*/
 
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #886d6d;
+    margin-bottom: 20px;
+}
+
+.navbar li {
+    border-right:1px solid #bbb;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-left: 0px;
+}
+
+.navbar li a:hover:not(.active) {
+    background-color: #d6a7a7;
+}
+
+.active {
+    background-color: #d6a7a7;
+}
 
 /* The following makes a really cool hr (used as separator or "thematic break")
  * It's based on Glyph, by Harry Roberts which I found at
@@ -46,3 +82,18 @@ hr:after {
 }
 
 /* YOUR CODE HERE: MISCELLANEOUS STYLING */
+
+h1 {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#projectile {
+  background-color:gray;
+  height:20px;
+  width:20px;
+  border-style:solid;
+  border-width:1px;
+  border-radius:10px;
+  display:inline-block;
+}

@@ -4,25 +4,44 @@
     <meta charset="utf-8">
     <title>Trebuchets -- About</title>
     <!-- TODO: Include styles.css -->
+    <link rel="stylesheet" href="/styles.css">
 
   </head>
   <!-- TODO: I broke something secret in the body. Fix it.
         HINT: it's something small and affects your CSS -->
   <body>
-    <nav>
+    <nav class="navbar">
       <ul>
         <!-- TODO: Fix broken link to home and add link to About and Simulator -->
-        <li><a href="/idx.html">Home</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a class="active" href="/about.html">About</a></li>
+        <li><a href="/simulator.html">Simulator</a></li>
       </ul>
     </nav>
     <!-- TODO: Move the inline CSS into styles -->
-    <h1 style="display:inline;">About Trebuchets</h1>
-    <div id="projectile" style="background-color:gray;height:20px;width:20px;border-style:solid;border-width:1px;border-radius:10px;display:inline-block;"></div>
+    <h1>About Trebuchets</h1>
+    <div id="projectile"></div>
     <!-- TODO: Create a section listing the features or advantages of trebuchets
           Use a list to display the features -->
+    <div>
+      <h2>Features</h2>
+      <ul>
+        <li>Beam</li>
+        <li>Pivot</li>
+        <li>Counterweight</li>
+        <li>Frame</li>
+        <li>Sling</li>
+        <li>Payload</li>
+      </ul>
+    </div>
 
     <!-- TODO: Create a section on educational resources for trebuchets.
           Include at least 1 image and embed at least 1 video (e.g. from YouTube) -->
+    <div>
+      <h2>Educational Resources</h2>
+      <img src="http://www.cdn.sciencebuddies.org/Files/6400/7/trebuchet-diagram.png">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/P7ESW58Egdc" frameborder="0" allowfullscreen></iframe>
+    </div>
 
     <hr>
     <h2>Related</h2>

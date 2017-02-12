@@ -27,7 +27,10 @@ function projectile() {
      * HINT: Looking at draw_arrow and component.update will help,
      * but you will have to do some googling (how to draw and fill in a circle?)
      * (around 5 lines) */
-
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = "gray";
+    ctx.fill();
   }
   this.collidesWith = function (obj) {
     /* TODO: Implement (simplified) collision detection. Assume obj is the wall.
@@ -44,7 +47,17 @@ function projectile() {
      * DON'T HARDCODE, USE PROPERTIES OF PROJECTILE AND WALL OBJECTS (< 20 lines) */
     // Using simplified conditions because only collide with wall from left to right
 
+    if (this.y >= obj.y && (this.x + this.radius) >= obj.x && (this.x + this.radius) <= obj.x + obj.width) {
+      return true;
 
+    } else if (this.x >= obj.x && (this.y + this.radius) >= obj.y && this.x <= obj.x + obj.width) {
+      return true;
+
+    }
+    if (Math.pow(obj.y - this.y, 2) + Math.pow(obj.x - this.x, 2) <= Math.pow(this.radius, 2)) {
+      return true;
+    }
+    return false;
   }
   this.hitBottom = function (y) {
     var bottommost = this.y + this.radius;
